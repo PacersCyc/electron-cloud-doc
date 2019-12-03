@@ -1,0 +1,13 @@
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - filter:
+      - build/**/*
+extraMetadata:
+  main: build/electron.js
+appId: electron-cloud-doc
+productName: electron云文档
+copyright: Copyright © 2019 cyc
+extends: react-cra
+electronVersion: 7.1.2
