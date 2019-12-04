@@ -1,6 +1,6 @@
 {
   "name": "electron-front",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "cyc",
     "email": "cyc_jk@163.com"
@@ -25,6 +25,8 @@
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
+    "release": "cross-env GH_TOKEN=652c271231b0b01779c5713744b24134d7d28d0e electron-builder",
+    "prerelease": "npm run build && npm run buildMain",
     "prepack": "npm run build && npm run buildMain",
     "predist": "npm run build && npm run buildMain"
   },
