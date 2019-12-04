@@ -13,6 +13,8 @@ files:
       - package.json
 extraMetadata:
   main: ./build/main.js
+publish:
+  - github
 mac:
   category: public.app-category.productivity
   artifactName: '${productName}-${version}-${arch}.${ext}'

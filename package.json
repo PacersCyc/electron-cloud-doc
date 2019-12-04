@@ -1,6 +1,6 @@
 {
   "name": "electron-front",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "author": {
     "name": "cyc",
     "email": "cyc_jk@163.com"
@@ -25,7 +25,7 @@
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "release": "cross-env GH_TOKEN=652c271231b0b01779c5713744b24134d7d28d0e electron-builder",
+    "release": "cross-env GH_TOKEN=62e8e5bb3484e100eaf544e94cbcdc7d644aabe3 electron-builder",
     "prerelease": "npm run build && npm run buildMain",
     "prepack": "npm run build && npm run buildMain",
     "predist": "npm run build && npm run buildMain"
@@ -48,7 +48,9 @@
     "extraMetadata": {
       "main": "./build/main.js"
     },
-    "publish": ["github"],
+    "publish": [
+      "github"
+    ],
     "mac": {
       "category": "public.app-category.productivity",
       "artifactName": "${productName}-${version}-${arch}.${ext}"
@@ -106,20 +108,21 @@
     ]
   },
   "devDependencies": {
-    "axios": "^0.19.0",
-    "electron-is-dev": "^1.1.0",
-    "qiniu": "^7.2.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
+    "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "concurrently": "^5.0.0",
     "cross-env": "^6.0.3",
-    "electron": "^7.1.2",
+    "electron": "7.1.2",
     "electron-builder": "^21.2.0",
+    "electron-is-dev": "^1.1.0",
+    "electron-updater": "^4.2.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
+    "qiniu": "^7.2.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0",
