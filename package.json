@@ -1,41 +1,92 @@
 {
   "name": "electron-front",
   "version": "0.1.0",
+  "author": {
+    "name": "cyc",
+    "email": "cyc_jk@163.com"
+  },
+  "repository": {
+    "url": "https://github.com/PacersCyc/electron-cloud-doc"
+  },
   "main": "main.js",
+  "description": "online markdown editor application",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.25",
-    "@fortawesome/free-brands-svg-icons": "^5.11.2",
-    "@fortawesome/free-solid-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.7",
-    "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
-    "classnames": "^2.2.6",
-    "electron-store": "^5.1.0",
-    "node-sass": "^4.13.0",
-    "prop-types": "^15.7.2",
-    "qiniu": "^7.2.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
-    "react-simplemde-editor": "^4.1.0",
-    "uuid": "^3.3.3"
+    "electron-store": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "buildMain": "webpack",
     "onlyEle": "nodemon --watch main.js --watch src/menuTemplate.js --exec \"electron .\"",
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "prepack": "npm run build"
+    "prepack": "npm run build && npm run buildMain",
+    "predist": "npm run build && npm run buildMain"
   },
+  "homepage": "./",
   "build": {
     "appId": "electron-cloud-doc",
     "productName": "electron云文档",
-    "copyright": "Copyright © 2019 cyc"
+    "copyright": "Copyright © 2019 ${author}",
+    "extends": null,
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "settings/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "extraMetadata": {
+      "main": "./build/main.js"
+    },
+    "publish": ["github"],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "dmg": {
+      "background": "assets/appdmg.png",
+      "icon": "assets/icon.icns",
+      "iconSize": 100,
+      "contents": [
+        {
+          "x": 380,
+          "y": 280,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 110,
+          "y": 280,
+          "type": "file"
+        }
+      ],
+      "window": {
+        "width": 500,
+        "height": 500
+      }
+    },
+    "win": {
+      "target": [
+        "msi",
+        "nsis"
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "${productName}-Web-Steup-${version}.${ext}",
+      "publisherName": "cyc"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": false
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,11 +104,26 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.19.0",
+    "electron-is-dev": "^1.1.0",
+    "qiniu": "^7.2.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
+    "classnames": "^2.2.6",
     "concurrently": "^5.0.0",
     "cross-env": "^6.0.3",
     "electron": "^7.1.2",
     "electron-builder": "^21.2.0",
-    "electron-is-dev": "^1.1.0",
-    "wait-on": "^3.3.0"
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0",
+    "react-simplemde-editor": "^4.1.0",
+    "uuid": "^3.3.3",
+    "wait-on": "^3.3.0",
+    "webpack-cli": "^3.3.10"
   }
 }
